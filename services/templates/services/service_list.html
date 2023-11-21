@@ -1,0 +1,115 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+{% include "_partials/navbar.html" %}
+<main>
+    <section class="bg-dark min-vh-100">
+        <div class="min-vh-100 d-flex flex-column py-5"
+            style="background-image: url('/static/shared/images/space_background.png');">
+            <div class="container position-relative text-center zindex-5 pt-4 pt-md-5 pb-5 mt-auto">
+                <div class="row mt-5">
+                    <div class="col-xl-10 mx-auto">
+                        <h1 class="display-1 mb-md-4 pb-3" style="backdrop-filter: blur(5px)">
+                            Software Development Experts
+                        </h1>
+                        <p class="text-body mx-auto mb-md-5 mb-4 pb-xl-2 pb-md-0 pb-sm-2 fs-5"
+                            style="max-width: 36.5rem">
+                            We are experts with providing the widest range of IT services and
+                            solutions for growing your business.
+                        </p>
+                        <a href="#" class="btn btn-lg btn-primary shadow-primary">Start your project</a>
+                    </div>
+                </div>
+            </div>
+            <div class="container mt-auto pb-lg-2 pb-xl-3">
+                <ul
+                    class="list-unstyled d-flex align-items-start justify-content-center flex-wrap text-nowrap mt-xl-0 mt-md-n4 mt-sm-n3 mt-n2 ms-md-n4 ms-n3 mb-0 pt-md-1">
+                    <li class="d-flex align-items-center text-body mt-md-4 mt-sm-3 mt-2 ms-md-4 ms-3">
+                        <i class="bi bi-check-circle me-2 fs-5 text-primary"></i>
+                        Extensive work experience
+                    </li>
+                    <li class="d-flex align-items-center text-body mt-md-4 mt-sm-3 mt-2 ms-md-4 ms-3">
+                        <i class="bi bi-check-circle me-2 fs-5 text-primary"></i>
+                        Flexible working conditions
+                    </li>
+                    <li class="d-flex align-items-center text-body mt-md-4 mt-sm-3 mt-2 ms-md-4 ms-3">
+                        <i class="bi bi-check-circle me-2 fs-5 text-primary"></i>
+                        Large and friendly team
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section class="container my-5 py-lg-5 py-md-4 pt-2 pb-3">
+        <h2 class="h1 mb-md-5 mb-4 py-xl-3 pb-lg-2 pb-md-0 pb-sm-2 text-center">
+            Our Services
+        </h2>
+        {% for service in service_list %}
+            {% if forloop.counter0|divisibleby:2 %}
+                <div class="row pb-5 mb-md-4 mb-lg-5">
+                    <div class="col-md-6 pb-1 mb-3 pb-md-0 mb-md-0">
+                        <a href="#">
+                            <div
+                                class="rounded-3 d-flex justify-content-center w-100 align-items-center"
+                                style="background: url('/static/shared/images/stars.png'); height: 400px;"
+                            >
+                                <img width="250" class="py-3" src="{{ service.image.url }}" alt="Moon" />
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="ps-md-4 ms-md-2">
+                            {% comment %} <div class="fs-sm text-muted mb-1">Nov 18, 2023</div> {% endcomment %}
+                            <h2 class="h3">{{ service.title }}</h2>
+                            <div class="d-flex">
+                                {% for tag in service.tags.all %}
+                                    <span class="d-table badge bg-faded-primary text-primary fs-sm mb-3 me-1">
+                                        {{ tag }}
+                                    </span>
+                                {% endfor %}
+                            </div>
+                            <p class="d-md-none d-lg-block pb-3 mb-2 mb-md-3">
+                                {{ service.description }}
+                            </p>
+                            <a href="#" class="btn btn-outline-primary">View more</a>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <div class="row pb-5 mb-md-4 mb-lg-5">
+                    <div class="col-md-6 order-md-2 pb-1 mb-3 pb-md-0 mb-md-0">
+                        <a href="#">
+                            <div
+                                class="rounded-3 d-flex justify-content-center w-100 align-items-center py-6"
+                                style="background: url('/static/shared/images/stars.png'); height: 400px;"
+                            >
+                                <img width="250" class="py-6" src="{{ service.image.url }}" alt="Moon" />
+                            </div>
+                        </a>
+                    </div>
+                    <div class="col-md-6 order-md-1 pt-md-1">
+                        <div class="pe-md-4 me-md-2">
+                            {% comment %} <div class="fs-sm text-muted mb-1">Nov 18, 2023</div> {% endcomment %}
+                            <h2 class="h3">{{ service.title }}</h2>
+                            <div class="d-flex">
+                                {% for tag in service.tags.all %}
+                                    <span class="d-table badge bg-faded-primary text-primary fs-sm mb-3 me-1">
+                                        {{ tag }}
+                                    </span>
+                                {% endfor %}
+                            </div>
+                            <p class="d-md-none d-lg-block pb-3 mb-2 mb-md-3">
+                                {{ service.description }}
+                            </p>
+                            <a href="#" class="btn btn-outline-primary">View more</a>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </section>
+</main>
+{% include "_partials/footer.html" %}
+{% endblock content %}

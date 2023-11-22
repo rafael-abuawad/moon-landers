@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section>
+    <article id="form-container">
+        <form hx-post="{% url 'contact-create' %}" hx-target="#form-container" hx-swap="outerHTML">
+            <fieldset>
+                <legend><h2>Get Online Consultation</h2></legend>
+                {% csrf_token %}
+                {{ form.as_p }}
+            </fieldset>
+            <button type="submit">Make an appointment</button>
+        </form>
+    </article>
+</section>
+{% endblock content %}
